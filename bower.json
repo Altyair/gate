@@ -1,0 +1,21 @@
+{
+  "name": "sync",
+  "homepage": "https://github.com/Altyair/gate",
+  "authors": [
+    "Дамир <altyair@mail.ru>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "CustomEventTarget": "^0.0.1"
+  }
+}
