@@ -16,6 +16,6 @@
     "tests"
   ],
   "dependencies": {
-    "CustomEventTarget": "^0.0.1",
+    "Custom event target": "CustomEventTarget#^0.0.3"
   }
 }
