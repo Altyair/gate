@@ -50,15 +50,15 @@ define('Gate', ['CustomEventTarget'], function (CustomEventTarget) {
       this._initializeEvents();
       
       /**
-      * Settings for frame.html.
-      * 
-      * @private
-      * @type  {Object} this._settings - Settings.
-      * @property {string} this._settings.sender - Sender.
-      * @property {string} this._settings.type - Type.
-      * @property {object} this._settings.settings - Settings.
-      * @property {string} this._settings.settings.localStorageKey - Local storage key.
-      */
+       * Settings for frame.html.
+       * 
+       * @private
+       * @type  {Object} this._settings - Settings.
+       * @property {string} this._settings.sender - Sender.
+       * @property {string} this._settings.type - Type.
+       * @property {object} this._settings.settings - Settings.
+       * @property {string} this._settings.settings.localStorageKey - Local storage key.
+       */
       this._settings = {
          sender: 'Gate.js',
          type: 'settings',
@@ -133,9 +133,23 @@ define('Gate', ['CustomEventTarget'], function (CustomEventTarget) {
     * @this {Gate}
     */
    Gate.prototype._initializeEvents = function () {
+      /**
+       * 
+       * 
+       * @private
+       */
+      this._onMessage = this._onMessage.bind(this);
+      
+      /**
+       * 
+       * 
+       * @private
+       */
+      this._onStorage = this._onStorage.bind(this);
+
       this._iframe.addEventListener('load', this._onCanPostMessage.bind(this));
-      window.addEventListener("message", this._onMessage.bind(this), false);
-      window.addEventListener('storage', this._onStorage.bind(this), false);
+      window.addEventListener("message",  this._onMessage, false);
+      window.addEventListener('storage', this._onStorage, false);
    };
    
    /**
@@ -253,6 +267,16 @@ define('Gate', ['CustomEventTarget'], function (CustomEventTarget) {
        * Remove iframe
        */
       document.body.removeChild( this._iframe );
+      
+      /**
+       * Remove event listener 'message'
+       */
+      window.removeEventListener("message",  this._onMessageHandler, false);
+      
+      /**
+       * Remove event listener 'storage'
+       */
+      window.removeEventListener('storage', this._onMessageHandler, false);
    };
    return Gate;
 });
