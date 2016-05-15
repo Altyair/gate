@@ -1,0 +1,85 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+		<script type="text/javascript">
+			
+			var ERROR_LOCAL_STORAGE_NOT_AVAILABLE = 'local Storage не доступен';
+			
+			var whitelist = [ 
+				'https://*',
+				'http://*'
+			];
+			var keyLocalStorage = null;
+
+			// ловим данные с http://sync
+			window.addEventListener('message', function (event) {
+				if (includes(event.origin)) {
+					if(event.data && event.data.type == 'settings') {
+						keyLocalStorage = event.data.settings.localStorageKey;
+					}
+					if(event.data && event.data.type == 'message') {
+						try {
+							if(window.localStorage !== null) {
+								localStorage.setItem(keyLocalStorage, JSON.stringify({
+									rnd: Math.random(),
+									data: event.data.data
+								}));
+							} else {
+								throw new Error(ERROR_LOCAL_STORAGE_NOT_AVAILABLE);
+							}
+						} catch (error) {
+						   console.error(err.message);
+						}
+					}
+				}
+			});
+			
+			// ловим данные с http://syncwindow
+			window.addEventListener('storage', function (event) {
+				var crossDomain = JSON.parse(event.newValue).crossDomain;
+				if (includes(event.url) && crossDomain) {
+					try {
+						var data = JSON.parse(event.newValue);
+						// делаем отправку из http://domen1/frame.html в http://domen2 через postMessage,
+						// если данные пришли по localStorage от http://domen1 в http://domen1/frame.html
+						parent.postMessage(
+							data.data,
+							'*'
+						);
+					} catch (error) {
+						console.error(err.message);
+					}
+				}
+			});
+			
+			
+			var patterns = createPatterns( whitelist );
+			
+			// создаем массив регулярок
+			function createPatterns( whitelist ) {
+				var patternsArr = [],
+					maxWhitelist = whitelist.length,
+					i;
+				for( i = 0; i < maxWhitelist; i += 1 ) {
+					// преобразуем маску в регуляку
+					patternsArr[i] = new RegExp( '^' + whitelist[i].replace(/[-\/\\^$+?.()|[\]{}]/g, '\\$&').replace(/\*/g,'.*?') + '$' );
+				}
+				return patternsArr;
+			}
+			
+			// функция проверки подходит ли домен под какую нибудь маску
+			function includes( origin ) {
+				var i, result, maxMatches = patterns.length;
+				for( i = 0; i < maxMatches; i += 1 ) {
+					if( patterns[i].test( origin ) ) {
+						result = true;
+						break;
+					}
+				}
+				return result;
+			}
+		</script>
+	</head>
+	<body></body>
+</html>
+

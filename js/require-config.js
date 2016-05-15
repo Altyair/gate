@@ -1,6 +1,6 @@
 require.config({
-   baseUrl: "js/demo",
+   baseUrl: "../demo",
    paths: {
-      Gate: '../dist/gate'
+      Gate: '../js/dist/gate'
    }
 });
