@@ -271,12 +271,12 @@ define('Gate', ['CustomEventTarget'], function (CustomEventTarget) {
       /**
        * Remove event listener 'message'
        */
-      window.removeEventListener("message",  this._onMessageHandler, false);
+      window.removeEventListener("message",  this._onMessage, false);
       
       /**
        * Remove event listener 'storage'
        */
-      window.removeEventListener('storage', this._onMessageHandler, false);
+      window.removeEventListener('storage', this._onMessage, false);
    };
    return Gate;
 });

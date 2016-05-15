@@ -1,6 +1,6 @@
 require(["Gate"], function(Gate) {
 	var gate = new Gate({
-		crossDomain: true,
+		crossDomain: false,
 		serviceFile: 'http://syncwindow/frame.html',
 		keyLocalStorage: 'storageKey',
 	});
