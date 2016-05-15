@@ -148,11 +148,7 @@ define('Gate', ['CustomEventTarget'], function (CustomEventTarget) {
    Gate.prototype._createIframe = function () {
       var iframe = document.createElement('iframe');
       iframe.src = this._src;
-      
-      document.body.insertBefore(iframe, document.body.children[0]);
-      var coords = iframe.getBoundingClientRect();
-      //iframe.style.cssText = "position:fixed";
-      iframe.style.left = - coords.left - coords.width + "px";
+      document.body.appendChild(iframe);
       
       return iframe;
    };
@@ -179,7 +175,7 @@ define('Gate', ['CustomEventTarget'], function (CustomEventTarget) {
     * @param {Object} data The data to transfer.
     */
    Gate.prototype.postMessage = function (data) {
-      if(this._crossDomain && this._src != 'about: blank') {
+      if(this._crossDomain && this._src != 'about:blank') {
          this._data.data = data;
          try {
             if ( !this._ready ) {
@@ -253,8 +249,10 @@ define('Gate', ['CustomEventTarget'], function (CustomEventTarget) {
    };
    
    Gate.prototype.destroy = function () {
-      alert('Master');
-      alert('Test111999');
+      /**
+       * Remove iframe
+       */
+      document.body.removeChild( this._iframe );
    };
    return Gate;
 });

@@ -32,6 +32,8 @@ require(["Gate"], function(Gate) {
 	
 	gate.on('message', messageHandler);
 	
+	//document.getElementById('color').addEventListener('click', function(event) { gate.destroy(); })
+	
 });
 
 //-----------------------------------------------------------------------------------------------------

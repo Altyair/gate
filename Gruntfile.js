@@ -8,17 +8,6 @@ module.exports = function(grunt) {
    grunt.initConfig({
       globalConfig : globalConfig,
       pkg : grunt.file.readJSON('package.json'),
-      //
-      //concat: {
-      //   dist: {
-      //      src: [
-      //          'bower_components/CustomEventTarget/CustomEventTarget.js', // 
-      //          'js/Gate.js'  // Какой-то файл
-      //      ],
-      //      dest: 'js/production.js',
-      //   }
-      //},
-
       browserify: {
          main: {
             src: [
@@ -41,7 +30,6 @@ module.exports = function(grunt) {
    grunt.loadNpmTasks('grunt-browserify');
 
    // 4. Мы сообщаем Grunt, что нужно делать, когда мы введём "grunt" в терминале.
-   grunt.registerTask('default', ['concat']);
    grunt.registerTask('default', ['browserify', 'watch']);
 
 };
