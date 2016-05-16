@@ -340,6 +340,11 @@ define('Gate', ['CustomEventTarget'], function (CustomEventTarget) {
       document.body.removeChild( this._iframe );
       
       /**
+       * Remove iframe from memory
+       */
+      this._iframe = null;
+
+      /**
        * Remove event listener 'message'
        */
       window.removeEventListener("message",  this._onMessage, false);
