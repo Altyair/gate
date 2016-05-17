@@ -44,3 +44,15 @@ demo/application.js
 ```javascript
 gate.postMessage({color: 'red'});
 ```
+
+### destroy()
+
+Функция destroy обрывает соединение между двумя доменами. 
+
+```javascript
+gate.destroy();
+```
+
+## Зависимости
+
+Gate требует зависимость `custom_event_target` https://github.com/Altyair/custom_event_target  ([lib](https://github.com/Altyair/custom_event_target)).

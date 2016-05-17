@@ -232,6 +232,12 @@ define('Gate', ['CustomEventTarget'], function (CustomEventTarget) {
     */
    Gate.prototype._createIframe = function () {
       var iframe = document.createElement('iframe');
+      iframe.style.cssText="position: fixed; \
+         top: -100px; \
+         left: -100px; \
+         width: 50px; \
+         height: 50px; \
+      ";
       iframe.src = this._src;
       document.body.appendChild(iframe);
       
