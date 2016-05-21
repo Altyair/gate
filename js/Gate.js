@@ -1,4 +1,4 @@
-define('Gate', ['CustomEventTarget'], function (CustomEventTarget) {
+   import CustomEventTarget from '../bower_components/Custom event target/CustomEventTarget';
    
    /**
     * Creates an instance Gate.
@@ -8,7 +8,7 @@ define('Gate', ['CustomEventTarget'], function (CustomEventTarget) {
     * @this {Gate}
     * @param {Object} options Settings.
     */
-   function Gate (options) {
+   export default function Gate (options) {
       this.constructor.Super.call(this);
       
       /**
@@ -25,7 +25,7 @@ define('Gate', ['CustomEventTarget'], function (CustomEventTarget) {
        * @private
        * @type {string}
        */
-      this._src = options.serviceFile;
+      this._src = options.serviceFile || 'about:blank';
       
       /**
        * Local storage key.
@@ -133,6 +133,13 @@ define('Gate', ['CustomEventTarget'], function (CustomEventTarget) {
     * @this {Gate}
     */
    Gate.prototype._initializeEvents = function () {
+       /**
+       * 
+       * 
+       * @private
+       */
+      this._onCanPostMessage = this._onCanPostMessage.bind(this);
+      
       /**
        * 
        * 
@@ -147,7 +154,7 @@ define('Gate', ['CustomEventTarget'], function (CustomEventTarget) {
        */
       this._onStorage = this._onStorage.bind(this);
 
-      this._iframe.addEventListener('load', this._onCanPostMessage.bind(this));
+      this._iframe.addEventListener('load', this._onCanPostMessage);
       window.addEventListener("message",  this._onMessage, false);
       window.addEventListener('storage', this._onStorage, false);
    };
@@ -288,9 +295,9 @@ define('Gate', ['CustomEventTarget'], function (CustomEventTarget) {
        * Remove event listener 'storage'
        */
       window.removeEventListener('storage', this._onMessage, false);
+      
+      /**
+       * Remove event listener '_onCanPostMessage'
+       */
+      this._iframe.removeEventListener('load', this._onCanPostMessage);
    };
-   return Gate;
-});
-//-----------------------------------------------------------------------------------------------------
-
-

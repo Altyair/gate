@@ -1,12 +1,12 @@
 {
-  "name": "sync",
-  "homepage": "https://github.com/Altyair/gate",
+  "name": "gate",
+  "description": "",
+  "main": "",
   "authors": [
     "Дамир <altyair@mail.ru>"
   ],
-  "description": "",
-  "main": "",
   "license": "MIT",
+  "homepage": "https://github.com/Altyair/gate",
   "private": true,
   "ignore": [
     "**/.*",
@@ -16,6 +16,6 @@
     "tests"
   ],
   "dependencies": {
-    "Custom event target": "CustomEventTarget#^0.0.3"
+    "Custom event target": "custom_event_target#^0.0.4"
   }
 }
