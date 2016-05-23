@@ -6,7 +6,6 @@ module.exports = function(grunt) {
    
    var babel = require('rollup-plugin-babel');
    
-   // 1. Всё конфигурирование тут
    grunt.initConfig({
       globalConfig : globalConfig,
       pkg : grunt.file.readJSON('package.json'),
@@ -31,12 +30,8 @@ module.exports = function(grunt) {
       },
    });
 
-   // 3. Здесь мы сообщаем Grunt, что мы планируем использовать этот плагин:
-   //grunt.loadNpmTasks('grunt-contrib-concat');
    grunt.loadNpmTasks('grunt-contrib-watch');
-   //grunt.loadNpmTasks('grunt-browserify');
    grunt.loadNpmTasks('grunt-rollup');
 
-   // 4. Мы сообщаем Grunt, что нужно делать, когда мы введём "grunt" в терминале.
    grunt.registerTask('default', ['rollup']);
 };

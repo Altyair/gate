@@ -13,14 +13,10 @@ export default{
     }),
   
     commonjs({
-      // if true then uses of `global` won't be dealt with by this plugin
       ignoreGlobal: false,  // Default: false
   
-      // if false then skip sourceMap generation for CommonJS modules
       sourceMap: false,  // Default: true
   
-      // explicitly specify unresolvable named exports
-      // (see below for more details)
       namedExports: { 'js/dist/gate.js': ['Gate' ] }  // Default: undefined 
     })
   ]

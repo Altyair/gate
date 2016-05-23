@@ -6,18 +6,16 @@ var gate = new Gate({
 	keyLocalStorage: 'storageKey',
 });
 
-// когда загружен iframe
 gate.on('ready', function (event) {
-	// по событию изменения цвета, вызываем postMessage, передав в него данные для передачи
 	document.getElementById('text').addEventListener('change', function(event) {
 		document.getElementById('color').style.background = this.value;
 		
-		// данные
 		gate.postMessage( {color: this.value} );
 	});
 });
+
 function errorHandler (event) {
-	alert(event.detail.message);
+	console.log(event.detail.message);
 };
 function messageHandler(event) {
 	var data = event.detail;
@@ -28,7 +26,6 @@ function messageHandler(event) {
 	}
 };
 
-// события error
 gate.on('error', errorHandler);
 
 gate.on('message', messageHandler);
