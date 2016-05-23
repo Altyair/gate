@@ -2,7 +2,7 @@ import Gate from '../dist/gate';
 
 var gate = new Gate({
 	crossDomain: true,
-	serviceFile: 'http://syncwindow/frame.html',
+	serviceFile: 'http://syncwindow/gate.html',
 	keyLocalStorage: 'storageKey',
 });
 
