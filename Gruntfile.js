@@ -34,4 +34,6 @@ module.exports = function(grunt) {
    grunt.loadNpmTasks('grunt-rollup');
 
    grunt.registerTask('default', ['rollup']);
+   
+   console.log(55);
 };
