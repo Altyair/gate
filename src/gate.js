@@ -1,4 +1,4 @@
-   import CustomEventTarget from '../bower_components/Custom event target/CustomEventTarget';
+   import CustomEventTarget from '../node_modules/custom-event-target/CustomEventTarget';
    
    /**
     * Creates an instance Gate.
@@ -8,7 +8,7 @@
     * @this {Gate}
     * @param {Object} options Settings.
     */
-   export default function Gate (options) {
+   function Gate (options) {
       this.constructor.Super.call(this);
       
       /**
@@ -301,3 +301,5 @@
        */
       this._iframe.removeEventListener('load', this._onCanPostMessage);
    };
+
+   export default Gate;

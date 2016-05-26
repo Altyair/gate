@@ -2,9 +2,9 @@ import commonjs from 'rollup-plugin-commonjs';
 import nodeResolve from 'rollup-plugin-node-resolve';
 
 export default{
-  entry: 'js/demo/application.js',
+  entry: 'demo/main.js',
   format: 'umd',
-  dest: 'js/demo/bundle.js', // equivalent to --output
+  dest: 'demo/bundle.js', // equivalent to --output
 
   plugins: [
     nodeResolve({
@@ -17,7 +17,7 @@ export default{
   
       sourceMap: false,  // Default: true
   
-      namedExports: { 'js/dist/gate.js': ['Gate' ] }  // Default: undefined 
+      namedExports: { 'dist/gate.js': ['Gate' ] }  // Default: undefined 
     })
   ]
 };
