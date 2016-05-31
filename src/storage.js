@@ -27,7 +27,7 @@
      * @type {string}
      * @constant
      */
-    Storage.ERROR_LOCAL_STORAGE_NOT_AVAILABLE = 'local Storage не доступен';
+    Storage.ERROR_LOCAL_STORAGE_NOT_AVAILABLE = 'local Storage РЅРµ РґРѕСЃС‚СѓРїРµРЅ';
     
     /**
      * Name event storage
