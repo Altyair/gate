@@ -1,3 +1,5 @@
+// итоговый файл после сборки через rollup
+
 (function (global, factory) {
    typeof exports === 'object' && typeof module !== 'undefined' ? factory() :
    typeof define === 'function' && define.amd ? define(factory) :
@@ -23,6 +25,7 @@
       }));
    });
 
+   // основной код программы main.js
    var a = 5;
-   console.log(window.a);
+   console.log(window.a); // здесь выводит undefined. почему непонятно пока
 }));
